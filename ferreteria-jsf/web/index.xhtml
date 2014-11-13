@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./newTemplate.xhtml">
+
+    <ui:define name="top">
+        
+        <!-- BEGINS NAV -->
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Activar navegaci&oacute;n</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="inicio">Ferreter&iacute;a</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="inicio">Inicio</a></li>
+                        <li><a href="compras/historial">Historial</a></li>
+                        <li><a href="productos">Productos</a></li>
+                        
+                        <li><a href="usuarios">Usuarios</a></li>
+                        <li><a href="ordenes">Ordenes</a></li>
+                        
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        
+                        <li><a href="carrito">Carrito <span class="badge">0</span></a></li>
+                        
+                        <li><a>Hola, Fulano!</a></li>
+                        <li><a class="btn-logout" href="logout">Salir</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+    </ui:define>
+
+    <ui:define name="left">
+        
+        
+        
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <main role="main" class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- BEGINS CONTENT -->
+                <div class="jumbotron presentation home">
+                    <h1>Bienvenido a Ferreter&iacute;a!</h1>
+                    <p>Desde aqu&iacute; puedes acceder a las siguientes opciones: </p>
+                    <div class="container menu">
+                        <div class="row">
+                            <a href="compras/historial" class="col-md-3 btn-block btn btn-lg">historial</a>
+                            <a href="productos" class="col-md-3 btn-block btn btn-lg">productos</a>
+                            
+                            <a href="usuarios" class="col-md-3 btn-block btn btn-lg">usuarios</a>
+                            <a href="ordenes" class="col-md-3 btn-block btn btn-lg">ordenes</a>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- ENDS CONTENT -->
+            </div>
+        </main>
+        
+    </ui:define>
+
+</ui:composition>

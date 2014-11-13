@@ -1,0 +1,35 @@
+# Instead of avoid upload .class files
+# we avoid to upload the full build directory
+#*.class
+build/
+
+# Gedit temporary files
+*~
+
+# Hibernate configuration file (avoid upload private passwords)
+hibernate.cfg.xml
+
+# Personal configs directory (maybe this is only because of Netbeans, no idea)
+private/
+
+# Distribution directory
+dist/
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# Test packages do not come with the stable branch
+junit*
+test/
+
+# Libraries are too heavy for the college bandwith
+# Sorry but you will have to add them by your self :-)
+lib/

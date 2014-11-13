@@ -1,0 +1,110 @@
+/*
+Copyright (C) 2014 Lucio Martinez <luciomartinez at openmailbox dot org>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/* 
+    Created on : Aug 31, 2014, 8:19:12 PM
+    Author     : Lucio Martinez <luciomartinez at openmailbox dot org>
+*/
+
+
+body > .container {
+    margin-top: 15px;
+}
+
+.presentation .footer {
+    margin-top: 15px;
+}
+
+
+
+/**       **/
+/*  LOGIN  */
+/**       **/
+.login.presentation {
+    text-align: center;
+}
+
+/**      **/
+/*  HOME  */
+/**      **/
+.home.presentation {
+    text-align: center;
+}
+
+.home.presentation .menu .btn-block {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 2em;
+    margin: 3%;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    text-transform: uppercase;
+    width: 215px;
+    -webkit-transition: background-color 300ms ease-out;
+    -moz-transition: background-color 300ms ease-out;
+    -o-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+}
+
+.home.presentation .menu .btn-block:first-child:hover, 
+.home.presentation .menu .btn-block:first-child:focus, 
+.home.presentation .menu .btn-block:first-child:active {
+    background-color: green;
+    color: white;
+}
+
+.home.presentation .menu .btn-block:hover, 
+.home.presentation .menu .btn-block:focus, 
+.home.presentation .menu .btn-block:active {
+    background-color: #428FFF;
+    color: white;
+}
+
+.home.presentation .menu .btn-block:last-child:hover, 
+.home.presentation .menu .btn-block:last-child:focus, 
+.home.presentation .menu .btn-block:last-child:active {
+    background-color: red;
+    color: white;
+}
+
+/**          **/
+/*  PRODUCTS  */
+/**          **/
+.products .header {
+    font-size: 3em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.products .table th {
+    /* Trying to resize columns with bootstrap */
+    /*width: auto !important;*/
+}
+
+.products .btn {
+    text-transform: uppercase;
+}
+
+.products .btn-right{
+    float: right;
+}
+
+/**       **/
+/*  USERS  */
+/**       **/
+.users .table {
+    margin-top: 10px;
+}
