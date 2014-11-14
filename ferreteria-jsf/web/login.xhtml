@@ -1,32 +1,19 @@
-<%-- 
-    Document   : login
-    Created on : Sep 4, 2014, 12:55:25 AM
-    Author     : Lucio Martinez <luciomartinez at openmailbox dot org>
---%>
-
-<%@page import="entity.Users"%>
-<%@page import="controllers.LoginController"%>
-<%@page import="servlets.Common"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.Calendar"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-String username = request.getParameter("username");
-%>
-<!DOCTYPE html>
-<html lang="es" dir="ltr">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      lang="es" dir="ltr">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         
-        <title>Ferreter&iacute;a - Login</title>
-        
-        <base href="${pageContext.request.contextPath}/" >
-        
-        <link href="static/css/styles.css" rel="stylesheet">
-        <link href="static/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/vendors/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="static/css/styles.css" rel="stylesheet"/>
+        <link href="static/vendors/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="static/vendors/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
+
+        <title>Facelets Template</title>
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,8 +22,8 @@ String username = request.getParameter("username");
             <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+    
     <body>
-        
         <!-- BEGINS NAV -->
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
@@ -54,14 +41,12 @@ String username = request.getParameter("username");
                         <li><a href="inicio">Inicio</a></li>
                         <li class="active"><a href="login.jsp">Login</a></li>
                     </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a><%= new SimpleDateFormat("dd 'of' MMM, yyyy").format(Calendar.getInstance().getTime()) %></a></li>
-                    </ul>
                 </div>
             </div>
         </nav>
         <!-- ENDS NAV -->
         
+        <!-- CONTENIDO GENERAL DE LA PAGINA -->
         <main role="main" class="container">
             <div class="col-md-10 col-md-offset-1">
                 <!-- BEGINS BREADCRUMBS -->
@@ -75,40 +60,39 @@ String username = request.getParameter("username");
                     <h1>Bienvenido a Ferreter&iacute;a!</h1>
                     <p>Inicia sesi&oacute;n para entrar al sistema de compras.</p>
                     
-                    <!-- Intento de login fallido -->
-                    <% if(!username.isEmpty()) { %>
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-                        <strong>Error</strong> La combinaci&oacute;n usuario contraseña es incorrecta.
-                    </div>
-                    <% } %> 
-                    
-                    <form role="form" class="form form-horizontal" method="POST" action="login">
+                    <!-- Intento de login fallido --> 
+                    <!-- <% if(!username.isEmpty()) { %> -->
+                    <h:panelGroup rendered="#{false}">
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+                            <strong>Error</strong> La combinaci&oacute;n usuario contraseña es incorrecta.
+                        </div>
+                    </h:panelGroup>
+                    <!-- <% } %> -->
+                    <h:form role="form" class="form form-horizontal">
                         <div class="form-group">
                             <label for="username-login" class="col-sm-3 control-label">Nombre de Usuario</label>
                             <div class="col-sm-7">
-                                <input type="text" class="form-control" name="username" id="username-login" placeholder="pepe" value="<%= ((username != null)?username:"") %>" required>
+                                <h:inputText class="form-control" id="username-login" value="#{userLogged.username}" required="required" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="password-login" class="col-sm-3 control-label">Contraseña</label>
                             <div class="col-sm-7">
-                                <input type="password" class="form-control" name="password" id="password-login" placeholder="C0n7r@s3ñ@" required>
+                                <h:inputSecret class="form-control" id="password-login" value="#{userLogged.password}" required="required"/>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-7">
-                                <button type="submit" name="submit" value="submit" class="btn btn-default">Iniciar Sesi&oacute;n</button>
+                                <h:commandLink type="submit" action="#{userLogged.attempLogin()}" class="btn btn-default" value="Iniciar Sesi&oacute;n"/>
                             </div>
                         </div>
-                    </form>
+                    </h:form>
                 </div>
                 <!-- ENDS CONTENT -->
             </div>
         </main>
         
-        <script src="static/vendors/jquery/js/jquery.min.js"></script>
-        <script src="static/vendors/bootstrap/js/bootstrap.min.js"></script>
-        <script src="static/js/scripts.js"></script>
     </body>
 </html>
+

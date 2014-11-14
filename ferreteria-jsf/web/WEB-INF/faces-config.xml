@@ -8,13 +8,13 @@
     <!-- SECTOR DE BEANS -->
     <managed-bean>
         <managed-bean-name>  userLogged     </managed-bean-name>
-        <managed-bean-class> entitys.Users  </managed-bean-class>
+        <managed-bean-class>beans.Usuario</managed-bean-class>
         <managed-bean-scope> session        </managed-bean-scope>
     </managed-bean>
     
     <managed-bean>
         <managed-bean-name>  shoppingCart   </managed-bean-name>
-        <managed-bean-class> entitys.ShoppingCart  </managed-bean-class>
+        <managed-bean-class>entity.ShoppingCart</managed-bean-class>
         <managed-bean-scope> session        </managed-bean-scope>
     </managed-bean>
     
@@ -23,8 +23,12 @@
         <!-- se consideran todas las peticiones -->
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>log</from-outcome>
-            <to-view-id>principal.xhtml</to-view-id>
+            <from-outcome>logueado</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>loguearse</from-outcome>
+            <to-view-id>login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
         

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13/11/2014 18:21:59 by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="ferreteria" name="entity.Details" table="details">
+    <id name="idDetail" type="java.lang.Integer">
+      <column name="IdDetail"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="entity.Purchases" fetch="select" name="purchases">
+      <column name="IdPurchase" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="entity.Products" fetch="select" name="products">
+      <column name="IdProduct" not-null="true"/>
+    </many-to-one>
+    <property name="amount" type="int">
+      <column name="Amount" not-null="true"/>
+    </property>
+    <property name="price" type="int">
+      <column name="Price" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>
