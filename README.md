@@ -1,7 +1,7 @@
-ferreteria-jsp
+ferreteria-jsf
 ==============
 
-Once again a ferreteria, but this time made with JSP
+Once again a ferreteria, but this time made with JSF
 
 #Requisitos
 
