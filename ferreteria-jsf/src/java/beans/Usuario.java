@@ -23,9 +23,11 @@ import org.mindrot.jbcrypt.BCrypt;
 public class Usuario extends Users {
     private boolean logeado;
     private boolean admin;
+    private boolean loginError = false;
     
     public Usuario(){
         logeado = false;
+        loginError = false;
     }
     
 
@@ -45,16 +47,24 @@ public class Usuario extends Users {
             session.getTransaction().commit();
             session.close();
 
-            if (u == null)
-                throw new InvalidParameterException("El usuario ingresado no existe.");
-
-            // Check that an unencrypted password matches one that has previously been hashed
-            if (!BCrypt.checkpw(password, u.getPassword()))
-                throw new InvalidParameterException("El usuario ingresado y la contraseña no coinciden.");
+            loginError = false;
+            if (u == null){
+                loginError = true;
+                //throw new InvalidParameterException("El usuario ingresado no existe.");
+            }
+            else{
+                // Check that an unencrypted password matches one that has previously been hashed
+                if (!BCrypt.checkpw(password, u.getPassword())){
+                    loginError = true;
+                    //throw new InvalidParameterException("El usuario ingresado y la contraseña no coinciden.");
+                }
+            }
             
-            this.setAdmin(u.isAdmin());
-            logeado = true;
-            isLogged = "logueado";
+            if(!loginError){
+                this.setAdmin(u.isAdmin());
+                logeado = true;
+                isLogged = "logueado";
+            }
 
         } catch(HibernateException e) {
             throw new StorageException("Error interno al intentar leer el usuario.");
@@ -93,5 +103,19 @@ public class Usuario extends Users {
     @Override
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    /**
+     * @return the loginError
+     */
+    public boolean isLoginError() {
+        return loginError;
+    }
+
+    /**
+     * @param loginError the loginError to set
+     */
+    public void setLoginError(boolean loginError) {
+        this.loginError = loginError;
     }
 }
