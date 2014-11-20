@@ -8,10 +8,14 @@
     <!-- SECTOR DE BEANS -->
     <managed-bean>
         <managed-bean-name>  userLogged     </managed-bean-name>
-        <managed-bean-class>beans.Usuario</managed-bean-class>
+        <managed-bean-class>beans.Usuario   </managed-bean-class>
         <managed-bean-scope> session        </managed-bean-scope>
     </managed-bean>
-    
+    <managed-bean>
+        <managed-bean-name>  agregarUsuario     </managed-bean-name>
+        <managed-bean-class>beans.PaginaUsuarios   </managed-bean-class>
+        <managed-bean-scope> session        </managed-bean-scope>
+    </managed-bean>
     <managed-bean>
         <managed-bean-name>  shoppingCart   </managed-bean-name>
         <managed-bean-class>entity.ShoppingCart</managed-bean-class>
@@ -30,6 +34,11 @@
             <from-outcome>loguearse</from-outcome>
             <to-view-id>login.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>usuarios</from-outcome>
+            <to-view-id>users.xhtml</to-view-id>
+        </navigation-case>
+        
     </navigation-rule>
         
 </faces-config>

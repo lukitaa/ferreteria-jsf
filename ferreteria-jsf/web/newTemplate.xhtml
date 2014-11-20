@@ -59,7 +59,8 @@
                             <li><h:outputLink value="carrito">Carrito <span class="badge">0</span></h:outputLink></li>
 
                             <li><a>Hola, #{userLogged.username}!</a></li>
-                            <li><a class="btn-logout" href="logout">Salir</a></li>
+                            <!-- CAMBIAR ESTE VALUE CON ALGUNA PROPIEDAD DEL BEAN PARA REDIRECCIONAR LUEGO DE CANCELAR LA SESSION -->
+                            <li><h:commandLink class="btn-logout" value="#{true}">Salir</h:commandLink></li>
                         </ul>
                     </div>
                 </div>

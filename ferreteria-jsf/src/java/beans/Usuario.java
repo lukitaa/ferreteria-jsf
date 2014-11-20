@@ -9,11 +9,10 @@ package beans;
 import dao.StorageException;
 import dao.UsersDaoImpl;
 import entity.Users;
-import java.security.InvalidParameterException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import util.HibernateUtil;
 import org.mindrot.jbcrypt.BCrypt;
+import util.HibernateUtil;
 
 /**
  * ESTA ES LA CLASE QUE SERA UTILIZADA POR JSF COMO BEAN.
@@ -31,6 +30,11 @@ public class Usuario extends Users {
     }
     
 
+    public String cancelarSesion() {
+        String isLogged = "loguearse";
+        this.setLogeado(false);
+        return isLogged;
+    }
     
     public String attempLogin() throws StorageException{
         String isLogged = "loguearse", 
@@ -72,7 +76,6 @@ public class Usuario extends Users {
         
         return isLogged;
     }
-    
     
     
     /**
@@ -118,4 +121,6 @@ public class Usuario extends Users {
     public void setLoginError(boolean loginError) {
         this.loginError = loginError;
     }
+
+    
 }
