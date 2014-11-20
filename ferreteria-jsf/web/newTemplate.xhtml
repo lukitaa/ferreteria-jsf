@@ -49,15 +49,16 @@
                             <li><a href="compras/historial">Historial</a></li>
                             <li><a href="productos">Productos</a></li>
 
-                            <li><a href="usuarios">Usuarios</a></li>
-                            <li><a href="ordenes">Ordenes</a></li>
+                            <!-- ESTA PARTE DEBE SER VISTA SOLAMENTE POR LOS ADMINS -->
+                            <li><h:outputLink value="usuarios" rendered="#{userLogged.admin}">Usuarios</h:outputLink></li>
+                            <li><h:outputLink value="ordenes" rendered="#{userLogged.admin}">Ordenes</h:outputLink></li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 
-                            <li><a href="carrito">Carrito <span class="badge">0</span></a></li>
+                            <li><h:outputLink value="carrito">Carrito <span class="badge">0</span></h:outputLink></li>
 
-                            <li><a>Hola, Fulano!</a></li>
+                            <li><a>Hola, #{userLogged.username}!</a></li>
                             <li><a class="btn-logout" href="logout">Salir</a></li>
                         </ul>
                     </div>
@@ -68,6 +69,7 @@
         </h:form>
         </div>
 
+            <!-- ESTA PARTE DEL TEMPLATE NO CREO QUE SEA USADA -->
             <div>
                 <div id="left">
                     <ui:insert name="left">Left</ui:insert>

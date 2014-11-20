@@ -2,7 +2,8 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
-                template="./newTemplate.xhtml">
+                template="./newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="top">
         <!-- ACA IRIA EL CONTENIDO A MOSTRARSE LUEGO DE LA BARRA DE NAVEGACION DE SERLO NECESIARIO -->
@@ -22,12 +23,17 @@
                     <p>Desde aqu&iacute; puedes acceder a las siguientes opciones: </p>
                     <div class="container menu">
                         <div class="row">
+                            <h:outputLink value="compras/historial" class="col-md-3 btn-block btn btn-lg">historial</h:outputLink>
+                            <h:outputLink value="productos" class="col-md-3 btn-block btn btn-lg">productos</h:outputLink>
+                            <h:outputLink value="usuarios" class="col-md-3 btn-block btn btn-lg">usuarios</h:outputLink>
+                            <h:outputLink value="ordenes" class="col-md-3 btn-block btn btn-lg">ordenes</h:outputLink>
+                            
+                            <!-- THIS WERE ALL THE ODS REF LINKS IN CASE THE OUTPUTLINKS DONT WORK 
                             <a href="compras/historial" class="col-md-3 btn-block btn btn-lg">historial</a>
                             <a href="productos" class="col-md-3 btn-block btn btn-lg">productos</a>
-                            
                             <a href="usuarios" class="col-md-3 btn-block btn btn-lg">usuarios</a>
                             <a href="ordenes" class="col-md-3 btn-block btn btn-lg">ordenes</a>
-                            
+                            -->
                         </div>
                     </div>
                 </div>

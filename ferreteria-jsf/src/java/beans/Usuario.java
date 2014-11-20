@@ -22,6 +22,7 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class Usuario extends Users {
     private boolean logeado;
+    private boolean admin;
     
     public Usuario(){
         logeado = false;
@@ -51,6 +52,7 @@ public class Usuario extends Users {
             if (!BCrypt.checkpw(password, u.getPassword()))
                 throw new InvalidParameterException("El usuario ingresado y la contraseña no coinciden.");
             
+            this.setAdmin(u.isAdmin());
             logeado = true;
             isLogged = "logueado";
 
@@ -75,5 +77,21 @@ public class Usuario extends Users {
      */
     public void setLogeado(boolean logeado) {
         this.logeado = logeado;
+    }
+
+    /**
+     * @return the admin
+     */
+    @Override
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    /**
+     * @param admin the admin to set
+     */
+    @Override
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }
