@@ -38,7 +38,20 @@
             <from-outcome>usuarios</from-outcome>
             <to-view-id>users.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>inicio</from-outcome>
+            <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>productos</from-outcome>
+            <to-view-id>products.xhtml</to-view-id>
+        </navigation-case>
         
     </navigation-rule>
-        
+    <managed-bean>
+        <description>products bean ....</description>
+        <managed-bean-name>products</managed-bean-name>
+        <managed-bean-class>beans.Productos</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

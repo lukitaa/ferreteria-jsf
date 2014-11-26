@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE LUEGO DE LA BARRA DE NAVEGACION DE SERLO NECESIARIO -->
+    </ui:define>
+
+    <ui:define name="left">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE SOBRE EL SECTOR IZQUIERDO DE SERLO NECESIARIO -->       
+    </ui:define>
+
+    <ui:define name="content">
+        <!-- CONTENIDO GENERAL DE LA PAGINA -->
+        <main role="main" class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- BEGINS BREADCRUMBS -->
+                <ol class="breadcrumb">
+                    <li><a href="inicio">Inicio</a></li>
+                    <li class="active">Productos</li>
+                </ol>
+                <!-- ENDS BREADCRUMBS -->
+                <!-- BEGINS CONTENT -->
+                <div class="jumbotron presentation products">
+                    <h1 class="header">Productos</h1>
+                        <h:form class="form-inline" role="form">
+                    <h:dataTable class="table table-bordered" value="#{products.listaProductos}" var="filaChota" border="1">
+                    
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Producto" />
+                                </f:facet>
+                                <h:outputText value="#{filaChota.product}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Precio" />
+                                </f:facet>
+                                <h:outputText value="#{filaChota.price}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Stock" />
+                                </f:facet>
+                                <h:outputText value="#{filaChota.stock}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Unidades" />
+                                </f:facet>
+                                <h:inputText value="#{filaChota.unidades}" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header" >
+                                    <h:outputText value="Agregar"/>
+                                </f:facet>
+                                <h:commandButton class="btn btn-xs btn-danger" value="Agregar" action="#{products.agregarCarrito()}"/>
+                            </h:column> 
+                        
+                    </h:dataTable>
+                    </h:form>
+                </div>
+                <!-- ENDS CONTENT -->
+            </div>
+        </main>
+        <!-- ENDS CONTENT --> 
+    </ui:define>
+
+</ui:composition>

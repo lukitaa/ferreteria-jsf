@@ -23,10 +23,9 @@
                     <p>Desde aqu&iacute; puedes acceder a las siguientes opciones: </p>
                     <div class="container menu">
                         <div class="row">
-                            <h:outputLink value="compras/historial" class="col-md-3 btn-block btn btn-lg">historial</h:outputLink>
-                            <h:outputLink value="productos" class="col-md-3 btn-block btn btn-lg">productos</h:outputLink>
-                            <h:commandLink action="usuarios" class="col-md-3 btn-block btn btn-lg">usuarios</h:commandLink>
-                            <h:outputLink value="ordenes" class="col-md-3 btn-block btn btn-lg">ordenes</h:outputLink>
+                            <h:commandLink action="productos" class="col-md-3 btn-block btn btn-lg">productos</h:commandLink>
+                            
+                            <h:commandLink action="usuarios" class="col-md-3 btn-block btn btn-lg" rendered="#{userLogged.admin}">usuarios</h:commandLink>
                             
                             <!-- THIS WERE ALL THE ODS REF LINKS IN CASE THE OUTPUTLINKS DONT WORK 
                             <a href="compras/historial" class="col-md-3 btn-block btn btn-lg">historial</a>

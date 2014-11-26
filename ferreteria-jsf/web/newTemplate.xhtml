@@ -41,17 +41,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="inicio">Ferreter&iacute;a</a>
+                        <h:outputLink class="navbar-brand" value="#{inicio}">Ferreter&iacute;a</h:outputLink>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="inicio">Inicio</a></li>
-                            <li><a href="compras/historial">Historial</a></li>
-                            <li><a href="productos">Productos</a></li>
+                            <li class="active"><h:outputLink value="#{inicio}">Inicio</h:outputLink></li>
+                            <li><h:commandLink action="productos">Productos</h:commandLink></li>
 
                             <!-- ESTA PARTE DEBE SER VISTA SOLAMENTE POR LOS ADMINS -->
-                            <li><h:outputLink value="usuarios" rendered="#{userLogged.admin}">Usuarios</h:outputLink></li>
-                            <li><h:outputLink value="ordenes" rendered="#{userLogged.admin}">Ordenes</h:outputLink></li>
+                            <li><h:commandLink action="usuarios" rendered="#{userLogged.admin}">Usuarios</h:commandLink></li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -60,7 +58,7 @@
 
                             <li><a>Hola, #{userLogged.username}!</a></li>
                             <!-- CAMBIAR ESTE VALUE CON ALGUNA PROPIEDAD DEL BEAN PARA REDIRECCIONAR LUEGO DE CANCELAR LA SESSION -->
-                            <li><h:commandLink class="btn-logout" value="#{true}">Salir</h:commandLink></li>
+                            <li><h:commandLink class="btn-logout" action="#{userLogged.cancelarSesion()}">Salir</h:commandLink></li>
                         </ul>
                     </div>
                 </div>
