@@ -6,6 +6,8 @@
 
 package beans;
 
+import controllers.InvalidParameterException;
+import controllers.ProductsController;
 import controllers.PurchaseController;
 import controllers.StorageException;
 import entity.Products;
@@ -46,6 +48,25 @@ public class Productos {
        this.detailses = detailses;
     }
    
+    public String agregarProducto(String producto, int precio, int stock) throws InvalidParameterException, StorageException{
+        String goURL = null;
+        ProductsController.addProduct(producto, precio, stock);
+        return goURL;
+    }
+    
+    public String eliminarProducto(Products prod) throws StorageException{
+        String goURL = null;
+        ProductsController.deleteProduct(prod);
+        return goURL;
+    }
+    
+    public String editarProducto(Products prod) throws StorageException{
+        String goURL = null;
+        ProductsController.updateProduct(prod, prod.getProduct(), prod.getPrice(), prod.getStock());
+        desedit();
+        return goURL;
+    }
+    
     public Integer getIdProduct() {
         return this.idProduct;
     }
@@ -115,4 +136,29 @@ public class Productos {
     public void setUnidades(int unidades) {
         this.unidades = unidades;
     }
+    
+    private boolean editmode;
+
+    public void edit() {
+        this.setEditmode(true);
+    }
+
+    public void desedit() {
+        this.setEditmode(false);
+    }
+    
+    /**
+     * @return the editmode
+     */
+    public boolean isEditmode() {
+        return editmode;
+    }
+
+    /**
+     * @param editmode the editmode to set
+     */
+    public void setEditmode(boolean editmode) {
+        this.editmode = editmode;
+    }
+
 }
