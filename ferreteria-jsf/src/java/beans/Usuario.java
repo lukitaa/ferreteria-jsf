@@ -24,6 +24,7 @@ public class Usuario extends Users {
     private boolean admin;
     private boolean loginError = false;
     
+    
     public Usuario(){
         logeado = false;
         loginError = false;
@@ -121,6 +122,7 @@ public class Usuario extends Users {
     public void setLoginError(boolean loginError) {
         this.loginError = loginError;
     }
-
+    
+    
     
 }

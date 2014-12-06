@@ -11,11 +11,13 @@ import java.util.Set;
 public class Users  implements java.io.Serializable {
 
 
-     private Integer idUser;
-     private String username;
-     private String password;
-     private boolean admin;
-     private Set purchaseses = new HashSet(0);
+    private Integer idUser;
+    private String username;
+    private String password;
+    private boolean admin;
+    private Set purchaseses = new HashSet(0);
+    private String esAdmin;
+    private boolean editable;
 
     public Users() {
     }
@@ -61,6 +63,8 @@ public class Users  implements java.io.Serializable {
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
+    
+    
     public Set getPurchaseses() {
         return this.purchaseses;
     }
@@ -69,8 +73,27 @@ public class Users  implements java.io.Serializable {
         this.purchaseses = purchaseses;
     }
 
+    public String getEsAdmin() {
+        return (this.admin) ? "Si" : "No";
+    }
+    
+    public void setEsAdmin(String esAdmin) {
+        this.esAdmin = esAdmin;
+    }
 
+      /**
+     * @return the editable
+     */
+    public boolean isEditable() {
+        return editable;
+    }
 
+    /**
+     * @param editable the editable to set
+     */
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
 
 }
 

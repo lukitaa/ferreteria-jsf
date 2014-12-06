@@ -21,7 +21,11 @@
         <managed-bean-class>entity.ShoppingCart</managed-bean-class>
         <managed-bean-scope> session        </managed-bean-scope>
     </managed-bean>
-    
+    <managed-bean>
+        <managed-bean-name>products</managed-bean-name>
+        <managed-bean-class>beans.Productos</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
     <!-- SECTOR DE NAVEGACION -->
     <navigation-rule>
         <!-- se consideran todas las peticiones -->
@@ -47,11 +51,5 @@
             <to-view-id>products.xhtml</to-view-id>
         </navigation-case>
         
-    </navigation-rule>
-    <managed-bean>
-        <description>products bean ....</description>
-        <managed-bean-name>products</managed-bean-name>
-        <managed-bean-class>beans.Productos</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+    </navigation-rule>    
 </faces-config>

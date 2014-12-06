@@ -25,6 +25,7 @@
     
     <body>
         <!-- BEGINS NAV -->
+        <h:form>
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -34,16 +35,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="inicio">Ferreter&iacute;a</a>
+                    <h:commandLink action="inicio" class="navbar-brand">Ferreter&iacute;a</h:commandLink>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li><a href="inicio">Inicio</a></li>
-                        <li class="active"><a href="login.jsp">Login</a></li>
+                        <li><h:commandLink action="inicio">Inicio</h:commandLink></li>
+                        <li class="active"><h:commandLink action="inicio">Login</h:commandLink></li>
                     </ul>
                 </div>
             </div>
         </nav>
+        </h:form>
         <!-- ENDS NAV -->
         
         <!-- CONTENIDO GENERAL DE LA PAGINA -->
@@ -84,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-7">
-                                <h:commandLink type="submit" action="#{userLogged.attempLogin()}" class="btn btn-default" value="Iniciar Sesi&oacute;n"/>
+                                <h:commandButton type="submit" action="#{userLogged.attempLogin()}" class="btn btn-default" value="Iniciar Sesi&oacute;n"/>
                             </div>
                         </div>
                     </h:form>

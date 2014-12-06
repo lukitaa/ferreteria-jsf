@@ -24,7 +24,7 @@
         <h:form rendered="#{!userLogged.logeado}">
             <h1 align="center"> Debe loguearse para poder ver esta pagina... </h1>  
             <div class="col-md-12">
-                <h:commandLink style="width: 100px;" class="btn btn-sm btn-warning center-block" value="Logueo" action="login.xhtml"/>
+                <h:commandLink action="login.xhtml" style="width: 100px;" class="btn btn-sm btn-warning center-block" value="Logueo"/>
             </div>
         </h:form>   
         
@@ -41,11 +41,11 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <h:outputLink class="navbar-brand" value="#{inicio}">Ferreter&iacute;a</h:outputLink>
+                        <h:commandLink class="navbar-brand" action="inicio">Ferreter&iacute;a</h:commandLink>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><h:outputLink value="#{inicio}">Inicio</h:outputLink></li>
+                            <li class="active"><h:commandLink action="inicio">Inicio</h:commandLink></li>
                             <li><h:commandLink action="productos">Productos</h:commandLink></li>
 
                             <!-- ESTA PARTE DEBE SER VISTA SOLAMENTE POR LOS ADMINS -->
@@ -54,7 +54,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 
-                            <li><h:outputLink value="carrito">Carrito <span class="badge">0</span></h:outputLink></li>
+                            <li><h:link>Carrito <span class="badge">0</span></h:link></li>
 
                             <li><a>Hola, #{userLogged.username}!</a></li>
                             <!-- CAMBIAR ESTE VALUE CON ALGUNA PROPIEDAD DEL BEAN PARA REDIRECCIONAR LUEGO DE CANCELAR LA SESSION -->

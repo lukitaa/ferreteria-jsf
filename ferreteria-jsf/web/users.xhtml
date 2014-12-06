@@ -20,7 +20,7 @@
         <div class="col-md-10 col-md-offset-1">
             <!-- BEGINS BREADCRUMBS -->
             <ol class="breadcrumb">
-                <li><a href="inicio">Inicio</a></li>
+                <li><h:commandLink action="index">Inicio</h:commandLink></li>
                 <li class="active">Usuarios</li>
             </ol>
             <div class="jumbotron presentation users">
@@ -43,43 +43,73 @@
                                 </h:selectOneMenu>
                             </label>
                         </div>
-                        
                         <!-- <button type="submit" class="btn btn-default">Agregar</button> -->
                         <h:commandButton action="#{agregarUsuario.addUser()}" value="Agregar"/>
                     </h:form>
                     
                     <h2>Usuarios actuales</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Usuario</th>
+                                <th>Contraseña</th>
+                                <th>Administrador?</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <ui:repeat value="#{agregarUsuario.getListaUsuarios()}" var="fila">
+                            <tr>
+                                <!-- <td><h:outputText value="#{fila.idUser}" rendered="#{not fila.editable}"/></td> -->
+                                <td><h:inputText value="#{fila.idUser}"/></td>
+                                <!-- <td><h:outputText value="#{fila.username}" rendered="#{not fila.editable}"/></td> -->
+                                <td><h:inputText value="#{fila.username}"/></td>
+                                <!-- <td><h:outputText value="#{fila.password}" rendered="#{not fila.editable}"/></td> -->
+                                <td><h:inputText value="#{fila.password}"/></td>
+                                <!-- <td><h:outputText value="#{fila.esAdmin}" rendered="#{not fila.editable}"/></td> -->
+                                <td><h:inputText value="#{fila.esAdmin}"/></td>
+                                <th><h:commandLink action="#{agregarUsuario.editarUsuario(fila)}" value="Editar" class="btn btn-info btn-sm"/></th>
+                                <th><h:commandButton action="#{agregarUsuario.eliminarUsuario(fila)}" value="Eliminar" class="btn btn-danger btn-sm"></h:commandButton></th>
+                            </tr>
+                        </ui:repeat>        
+                    </table>
+                    
+                </div>
+                <!-- ENDS CONTENT 
+                <h2>Usuarios actuales</h2>
 
                     <h:dataTable class="table table-bordered" value="#{agregarUsuario.listaUsuarios}" var="fila" border="1">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Nombre usuario" />
                             </f:facet>
-                            <h:outputText id="idcli" value="#{fila.username}" />
+                            <h:inputText value="#{fila.username}" rendered="#{fila.editable}"/>
+                            <h:outputText id="idcli" value="#{fila.username}" rendered="#{not fila.editable}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="Es administrador" />
                             </f:facet>
-                            <h:outputText id="nom" value="#{fila.admin}" />
+                            <h:inputText value="#{fila.admin}" rendered="#{fila.editable}"/>
+                            <h:outputText id="nom" value="#{fila.esAdmin}" rendered="#{not fila.editable}"/>
+                        </h:column>
+                        <h:column rendered="#{not fila.editable}">
+                            <f:facet name="header">
+                                <h:outputText value="Contraseña" />
+                            </f:facet>
+                            <h:inputText value="#{fila.password}" rendered="#{not fila.editable}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header" >
                                 <h:outputText value="Acciones"/>
                             </f:facet>
-                            <h:commandLink class="btn btn-xs btn-info" value="Editar" action="#{agregarUsuario.editarUsuario}">
-                                <f:param name="userId" value="#{fila.idUser}"/>
-                                <f:param name="username" value="#{fila.username}"/>
-                                <f:param name="password" value="#{fila.password}"/>
-                                <f:param name="admin" value="#{fila.admin}"/>
-                            </h:commandLink>
+                            <h:commandButton class="btn btn-xs btn-info" value="Editar" action="#{agregarUsuario.editarUsuario(fila)}" rendered="#{not fila.editable}"/>
                             <h:outputText value="&#160;" />
-                            <h:commandLink class="btn btn-xs btn-danger" value="Eliminar" action="#{agregarUsuario.eliminarUsuario(fila.idUser)}"/>
+                            <h:commandLink class="btn btn-xs btn-danger" value="Eliminar" action="#{agregarUsuario.eliminarUsuario(fila)}"/>
                         </h:column> 
                     </h:dataTable>
-                    
-                </div>
-                <!-- ENDS CONTENT -->
+                -->
             </div>
         </main>
         
