@@ -94,28 +94,23 @@ public class PaginaUsuarios {
         }
     }
     
-    public String editarUsuario(Users u) throws StorageException{
-        if(u != null){
-            u.setEditable(true);
-            actualizarUsuario(u);
-        }
-        return null;
-    }
-    
     public static void actualizarUsuario(Users user) throws StorageException {
         if(user != null){
             Users u = getUser(user.getIdUser());
-            user.setEditable(true);
+            
             Session session = HibernateUtil.getSessionFactory().openSession();
             try {
                 session.beginTransaction();
 
                 // Update user's attributes
                 u.setUsername(user.getUsername());
-                u.setPassword(BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12)));
-                user.setAdmin(u.getEsAdmin().equals("Si"));
+                String aux = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
+                if(!aux.equals(user.getPassword()))
+                    u.setPassword(BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12)));
+                //CHEQUEANDO ESTA PARTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                u.setAdmin(user.getNormalAdmin().equals("Es administrador"));
 
-                new UsersDaoImpl(session).update(user);
+                new UsersDaoImpl(session).update(u);
 
                 session.getTransaction().commit();
                 session.close();

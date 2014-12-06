@@ -77,6 +77,10 @@ public class Users  implements java.io.Serializable {
         return (this.admin) ? "Si" : "No";
     }
     
+    public String getNormalAdmin(){
+        return this.esAdmin;
+    }
+    
     public void setEsAdmin(String esAdmin) {
         this.esAdmin = esAdmin;
     }

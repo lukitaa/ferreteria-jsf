@@ -17,7 +17,7 @@
     <ui:define name="content">
         <!-- CONTENIDO GENERAL DE LA PAGINA -->
         <main role="main" class="container">
-        <div class="col-md-10 col-md-offset-1">
+        <div class="col-md-11 col-md-offset-1">
             <!-- BEGINS BREADCRUMBS -->
             <ol class="breadcrumb">
                 <li><h:commandLink action="index">Inicio</h:commandLink></li>
@@ -62,14 +62,19 @@
                         <ui:repeat value="#{agregarUsuario.getListaUsuarios()}" var="fila">
                             <tr>
                                 <!-- <td><h:outputText value="#{fila.idUser}" rendered="#{not fila.editable}"/></td> -->
-                                <td><h:inputText value="#{fila.idUser}"/></td>
+                                <td><h:outputText value="#{fila.idUser}"/></td>
                                 <!-- <td><h:outputText value="#{fila.username}" rendered="#{not fila.editable}"/></td> -->
-                                <td><h:inputText value="#{fila.username}"/></td>
+                                <td><h:inputText id="username" value="#{fila.username}"/></td>
                                 <!-- <td><h:outputText value="#{fila.password}" rendered="#{not fila.editable}"/></td> -->
                                 <td><h:inputText value="#{fila.password}"/></td>
                                 <!-- <td><h:outputText value="#{fila.esAdmin}" rendered="#{not fila.editable}"/></td> -->
-                                <td><h:inputText value="#{fila.esAdmin}"/></td>
-                                <th><h:commandLink action="#{agregarUsuario.editarUsuario(fila)}" value="Editar" class="btn btn-info btn-sm"/></th>
+                                <td>
+                                    <h:outputText value="#{fila.esAdmin} &#160; "/>
+                                    <h:selectOneMenu value="#{fila.esAdmin}">
+                                        <f:selectItems id="admin" value="#{agregarUsuario.items}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                                <th><h:commandLink action="#{agregarUsuario.actualizarUsuario(fila)}" value="Editar" class="btn btn-info btn-sm"/></th>
                                 <th><h:commandButton action="#{agregarUsuario.eliminarUsuario(fila)}" value="Eliminar" class="btn btn-danger btn-sm"></h:commandButton></th>
                             </tr>
                         </ui:repeat>        
@@ -116,4 +121,13 @@
         <!-- ENDS CONTENT --> 
     </ui:define>
 
+    <f:verbatim>
+        <script type="text/javascript">
+        function checkData(){
+            var username = document.getElementById("username");
+            alert(username);
+        }
+    </script>
+    </f:verbatim>
+    
 </ui:composition>
