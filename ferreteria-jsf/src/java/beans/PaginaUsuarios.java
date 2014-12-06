@@ -94,8 +94,9 @@ public class PaginaUsuarios {
         }
     }
     
-    public static void actualizarUsuario(Users user) throws StorageException {
+    public void actualizarUsuario(Users user) throws StorageException {
         if(user != null){
+            desedit();
             Users u = getUser(user.getIdUser());
             
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -106,7 +107,7 @@ public class PaginaUsuarios {
                 u.setUsername(user.getUsername());
                 String aux = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12));
                 if(!aux.equals(user.getPassword()))
-                    u.setPassword(BCrypt.hashpw(u.getPassword(), BCrypt.gensalt(12)));
+                    u.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(12)));
                 //CHEQUEANDO ESTA PARTE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 u.setAdmin(user.getNormalAdmin().equals("Es administrador"));
 
@@ -204,5 +205,27 @@ public class PaginaUsuarios {
         this.isAdmin = isAdmin;
     }
 
-   
+   private boolean editmode;
+
+    public void edit() {
+        this.setEditmode(true);
+    }
+
+    public void desedit() {
+        this.setEditmode(false);
+    }
+    
+    /**
+     * @return the editmode
+     */
+    public boolean isEditmode() {
+        return editmode;
+    }
+
+    /**
+     * @param editmode the editmode to set
+     */
+    public void setEditmode(boolean editmode) {
+        this.editmode = editmode;
+    }
 }

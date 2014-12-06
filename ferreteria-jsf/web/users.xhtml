@@ -55,31 +55,33 @@
                                 <th>Usuario</th>
                                 <th>Contraseña</th>
                                 <th>Administrador?</th>
-                                <th>Editar</th>
                                 <th>Eliminar</th>
+                                <th><h:outputText rendered="#{agregarUsuario.editmode}" value="Editar"/></th>
                             </tr>
                         </thead>
                         <ui:repeat value="#{agregarUsuario.getListaUsuarios()}" var="fila">
                             <tr>
-                                <!-- <td><h:outputText value="#{fila.idUser}" rendered="#{not fila.editable}"/></td> -->
                                 <td><h:outputText value="#{fila.idUser}"/></td>
-                                <!-- <td><h:outputText value="#{fila.username}" rendered="#{not fila.editable}"/></td> -->
-                                <td><h:inputText id="username" value="#{fila.username}"/></td>
-                                <!-- <td><h:outputText value="#{fila.password}" rendered="#{not fila.editable}"/></td> -->
-                                <td><h:inputText value="#{fila.password}"/></td>
-                                <!-- <td><h:outputText value="#{fila.esAdmin}" rendered="#{not fila.editable}"/></td> -->
-                                <td>
-                                    <h:outputText value="#{fila.esAdmin} &#160; "/>
-                                    <h:selectOneMenu value="#{fila.esAdmin}">
-                                        <f:selectItems id="admin" value="#{agregarUsuario.items}"/>
+                                
+                                <td><h:outputText value="#{fila.username}" rendered="#{!agregarUsuario.editmode}"/>
+                                <h:inputText id="username" value="#{fila.username}" rendered="#{agregarUsuario.editmode}"/></td>
+                                
+                                <td><h:outputText value="#{fila.password}" rendered="#{!agregarUsuario.editmode}"/>
+                                    <h:inputText value="#{fila.password}" rendered="#{agregarUsuario.editmode}"/></td>
+                                
+                                <td><h:outputText value="#{fila.esAdmin}" rendered="#{!agregarUsuario.editmode}"/>
+                                    <h:selectOneMenu value="#{fila.esAdmin}" rendered="#{agregarUsuario.editmode}">
+                                        <f:selectItems id="admin" value="#{agregarUsuario.items}" rendered="#{agregarUsuario.editmode}"/>
                                     </h:selectOneMenu>
                                 </td>
-                                <th><h:commandLink action="#{agregarUsuario.actualizarUsuario(fila)}" value="Editar" class="btn btn-info btn-sm"/></th>
+                                
                                 <th><h:commandButton action="#{agregarUsuario.eliminarUsuario(fila)}" value="Eliminar" class="btn btn-danger btn-sm"></h:commandButton></th>
+                                <th><h:commandLink action="#{agregarUsuario.actualizarUsuario(fila)}" value="Editar" class="btn btn-info btn-sm" rendered="#{agregarUsuario.editmode}"/></th>
                             </tr>
                         </ui:repeat>        
                     </table>
-                    
+                    <h:commandButton value="Habilitar las celdas para editar" action="#{agregarUsuario.edit}" rendered="#{!agregarUsuario.editmode and userLogged.admin}" class="btn btn-primary"/>
+                    <h:commandButton value="Deshabilitar las celdas para editar" action="#{agregarUsuario.desedit}" rendered="#{agregarUsuario.editmode and userLogged.admin}" class="btn btn-primary"/>
                 </div>
                 <!-- ENDS CONTENT 
                 <h2>Usuarios actuales</h2>
