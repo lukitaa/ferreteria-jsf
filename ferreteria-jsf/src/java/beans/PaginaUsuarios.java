@@ -23,12 +23,14 @@ public class PaginaUsuarios {
     private boolean isAdmin;
     private String amin;
     private List<Users> listaUsuarios;
+    private boolean success = false;
     
     public PaginaUsuarios() throws StorageException{
         username = "";
         password = "";
         isAdmin = false;
         items = new ArrayList();
+        success = false;
     }
     
     /**
@@ -132,6 +134,7 @@ public class PaginaUsuarios {
         String pass = this.getPassword();
         boolean isAdmin = this.getAmin().equals("Es administrador");
         UsersController.addUser(username, password, isAdmin);
+        setSuccess(true);
         return null;
     }
     
@@ -227,5 +230,23 @@ public class PaginaUsuarios {
      */
     public void setEditmode(boolean editmode) {
         this.editmode = editmode;
+    }
+
+    /**
+     * @return the success
+     */
+    public boolean isSuccess() {
+        return success;
+    }
+
+    /**
+     * @param success the success to set
+     */
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    public void desSuccess(){
+        this.setSuccess(false);
     }
 }

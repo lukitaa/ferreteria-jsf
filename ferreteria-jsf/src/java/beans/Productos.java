@@ -27,13 +27,14 @@ public class Productos {
      private int stock;
      private int unidades;
      private Set detailses = new HashSet(0);
-     
+     private boolean success = false;
      private List<Products> listaProductos;
 
     /**
      * Creates a new instance of Products
      */
     public Productos() {
+        success = false;
     }
     
     public Productos(String product, int price, int stock) {
@@ -51,6 +52,7 @@ public class Productos {
     public String agregarProducto(String producto, int precio, int stock) throws InvalidParameterException, StorageException{
         String goURL = null;
         ProductsController.addProduct(producto, precio, stock);
+        this.setSuccess(true);
         return goURL;
     }
     
@@ -161,4 +163,21 @@ public class Productos {
         this.editmode = editmode;
     }
 
+    /**
+     * @return the success
+     */
+    public boolean isSuccess() {
+        return success;
+    }
+
+    /**
+     * @param success the success to set
+     */
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+    
+    public void desSuccess(){
+        this.setSuccess(false);
+    }
 }

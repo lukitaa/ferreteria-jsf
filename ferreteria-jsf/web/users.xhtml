@@ -47,6 +47,12 @@
                         <h:commandButton action="#{agregarUsuario.addUser()}" value="Agregar"/>
                     </h:form>
                     
+                    <h:outputScript rendered="#{agregarUsuario.success}">
+                        alert('Usuario agregado con exito!');
+                        #{agregarUsuario.desSuccess()}
+                    </h:outputScript>
+                    
+                    
                     <h2>Usuarios actuales</h2>
                     <table class="table table-bordered">
                         <thead>

@@ -63,8 +63,8 @@
                                 <th>Producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio</th>
-                                <th>Cantidad a comprar</th>
-                                <th>Agregar</th>
+                                <th>Cant. comprar</th>
+                                <th>Agregar al carro</th>
                                 <th><h:outputText value="Eliminar" rendered="#{userLogged.admin}"/></th>
                                 <th><h:outputText value="Editar" rendered="#{userLogged.admin and products.editmode}"/></th>
                             </tr>
@@ -89,14 +89,21 @@
                                     <h:outputText value="---" rendered="#{products.editmode}"/>
                                 </td>
                                 
-                                <th><h:commandButton action="submit" value="Agregar" class="btn btn-warning btn-xs"></h:commandButton></th>
+                                <th><h:commandButton action="submit" value="Agregar carrito" class="btn btn-warning btn-xs"></h:commandButton></th>
                                 <th><h:commandButton action="#{products.eliminarProducto(fila)}" value="Eliminar" class="btn btn-danger btn-xs" rendered="#{userLogged.admin}"/></th>
                                 <th><h:commandButton action="#{products.editarProducto(fila)}" value="Editar" class="btn btn-info btn-xs" rendered="#{userLogged.admin and products.editmode}"/></th>
                             </tr>        
                         </ui:repeat>        
                     </table>    
-                    <h:commandButton value="Habilitar las celdas para editar" action="#{products.edit}" rendered="#{!products.editmode and userLogged.admin}" class="btn btn-primary"/>
-                    <h:commandButton value="Deshabilitar las celdas para editar" action="#{products.desedit}" rendered="#{products.editmode and userLogged.admin}" class="btn btn-primary"/>
+                    <a href="carrito" class="btn btn-primary">Ver el pedido</a>
+                    <h:commandButton value="Habilitar las celdas para editar" action="#{products.edit}" rendered="#{!products.editmode and userLogged.admin}" class="btn btn-primary btn-right"/>
+                    <h:commandButton value="Deshabilitar las celdas para editar" action="#{products.desedit}" rendered="#{products.editmode and userLogged.admin}" class="btn btn-primary btn-right"/>
+                    
+                    
+                    <h:outputScript rendered="#{products.success}">
+                        alert('Producto agregado con exito!');
+                        #{products.desSuccess()}
+                    </h:outputScript>
                     
                     <!--
                     <h:dataTable class="table table-bordered" value="#{products.listaProductos}" var="filaChota" border="1">
