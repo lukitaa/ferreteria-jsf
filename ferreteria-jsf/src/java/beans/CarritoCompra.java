@@ -21,6 +21,7 @@ public class CarritoCompra {
     private List<Integer> productsId;
     private int total;
     private int cantidad;
+    boolean error;
 
     private List<Products> productosComprar;
     
@@ -29,6 +30,7 @@ public class CarritoCompra {
         productsId = new ArrayList();
         productosComprar = new ArrayList();
         total = 0;
+        error = false;
     }
 
     
@@ -53,23 +55,37 @@ public class CarritoCompra {
         }
         
         getProductosComprar();
+        compraMayorStock();
     }
     
     public void removeProduct(Products prod) {
 
         for(int i = 0, length = this.productosComprar.size(); i < length; i++) {
-        if (prod.getIdProduct() == this.productosComprar.get(i).getIdProduct()) {
-            this.productosComprar.remove(i);
-            
-            for(int x = 0; x < productsId.size(); x++){
-                if(productsId.get(x) == prod.getIdProduct()){
-                    productsId.remove(x);
-                    productsAmount.remove(x);
+            if (prod.getIdProduct() == this.productosComprar.get(i).getIdProduct()) {
+                this.productosComprar.remove(i);
+
+                for(int x = 0; x < productsId.size(); x++){
+                    if(productsId.get(x) == prod.getIdProduct()){
+                        productsId.remove(x);
+                        productsAmount.remove(x);
+                    }
                 }
+                break;
             }
-            break;
         }
-}
+        compraMayorStock();
+    }
+    
+    public boolean compraMayorStock() {
+        setError(false);
+        for(int i = 0; i < productosComprar.size();i++){
+            
+            if(productosComprar.get(i).getStock() < productosComprar.get(i).getUnidades() ||
+               productosComprar.get(i).getStock() <= 0 ||
+               productosComprar.get(i).getUnidades() < 0)
+                setError(true);
+        }
+        return error;
     }
     
     public List<Integer> getProductsAmount() {
@@ -120,28 +136,32 @@ public class CarritoCompra {
      * @return the productosComprar
      */
     public List<Products> getProductosComprar() throws StorageException {
+       
         for(int i = 0; i < productsId.size(); i++){
             Products p = ProductsController.getProduct(productsId.get(i));
             
             //obtener la posicion del producto con id de P
             //para obtener la cantidad a comprar de este segun la posicion en la lista.
-            int index = 0;
             for(int x = 0; x < productsId.size(); x++){
                 if(productsId.get(x) == p.getIdProduct()){
-                    index = x;
+                    p.setUnidades(productsAmount.get(x));
                     break;
                 }
             }
-            p.setUnidades(productsAmount.get(index));
         
             boolean exists = false;
             for(int j = 0; j < productosComprar.size(); j++){
-                if(p.getIdProduct() == productosComprar.get(i).getIdProduct())
+                if(p.getIdProduct() == productosComprar.get(j).getIdProduct()){
                     exists = true;
+                    break;
+                }
             }
             
             if(!exists)
                 productosComprar.add(p);
+            else
+                productosComprar.get(i).setUnidades(p.getUnidades());
+                
         }
         return productosComprar;
     }
@@ -160,5 +180,13 @@ public class CarritoCompra {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+    
+    public boolean isError() {
+        return error;
+    }
+
+    public void setError(boolean error) {
+        this.error = error;
     }
 }

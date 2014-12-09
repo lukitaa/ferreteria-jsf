@@ -89,7 +89,7 @@
                                     <h:outputText value="---" rendered="#{products.editmode}"/>
                                 </td>
                                 
-                                <th><h:commandButton action="#{carrito.updateCart(fila)}" value="Agregar carrito" class="btn btn-warning btn-xs"></h:commandButton></th>
+                                <th><h:commandButton action="#{carrito.updateCart(fila)}" value="Agregar carrito" class="btn btn-success btn-xs"></h:commandButton></th>
                                 <th><h:commandButton action="#{products.eliminarProducto(fila)}" value="Eliminar" class="btn btn-danger btn-xs" rendered="#{userLogged.admin}"/></th>
                                 <th><h:commandButton action="#{products.editarProducto(fila)}" value="Editar" class="btn btn-info btn-xs" rendered="#{userLogged.admin and products.editmode}"/></th>
                             </tr>        
@@ -105,40 +105,6 @@
                         #{products.desSuccess()}
                     </h:outputScript>
                     
-                    <!--
-                    <h:dataTable class="table table-bordered" value="#{products.listaProductos}" var="filaChota" border="1">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Producto" />
-                            </f:facet>
-                            <h:outputText value="#{filaChota.product}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Precio" />
-                            </f:facet>
-                            <h:outputText value="#{filaChota.price}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Stock" />
-                            </f:facet>
-                            <h:outputText value="#{filaChota.stock}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Unidades" />
-                            </f:facet>
-                            <h:inputText value="#{filaChota.unidades}" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header" >
-                                <h:outputText value="Agregar"/>
-                            </f:facet>
-                            <h:commandButton class="btn btn-xs btn-danger" value="Agregar" action="#{products.agregarCarrito()}"/>
-                        </h:column> 
-                    </h:dataTable>
-                    -->
                 </div>
                 <!-- ENDS CONTENT -->
             </div>

@@ -45,16 +45,14 @@
                                 <td><h:outputText value="#{fila.unidades}"/></td>
                                 <td><h:outputText value="#{fila.stock}"/></td>
                                 
-                                #{carrito.updateTotal( (fila.unidades * fila.price) )}
-                                
                                 <th><h:commandButton action="#{carrito.removeProduct(fila)}" value="Quitar" class="btn btn-danger btn-xs"/></th>
                             </tr>        
                         </ui:repeat> 
                     </table>
                     
-                    <h:outputText value="Total de compra: $#{carrito.total}" class="text-success"/>
-                    <!-- <a href="carrito/comprar" class="btn btn-info" <%= itemIsOverProductStock?"disabled":""%>>Realizar Pedido</a> -->
-                    <h4 class="text-muted">Advertencia: no se podra realizar la compra si la cantidad de unidades de un art&iacute;culo supera el stock disponible.</h4>
+                    <h:outputText value="Total de compra: $#{carrito.total}" class="text-success"/><br/>
+                    <h:commandButton action="submit" class="btn btn-primary btn-sm" rendered="#{carrito.cantidad > 0 and !carrito.error}" value="Realizar Pedido"></h:commandButton>
+                    <h4 class="text-danger">Advertencia: no se podra realizar la compra si la cantidad de unidades de un art&iacute;culo supera el stock disponible.</h4>
                             
                 </div>
                 <!-- ENDS CONTENT -->
