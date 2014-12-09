@@ -28,14 +28,20 @@ import util.HibernateUtil;
 public class Detalles extends Details {
     
     private List<Details> detalles;
+    private int cantidad;
+    private int total;
     private boolean success = false;
+    private boolean sinCompras;
+    private List<Products> productos;
     
     public Detalles(){
         detalles = new ArrayList();
+        productos = new ArrayList();
         success = false;
     }
     
     public List<Details> generateDetails(CarritoCompra cart) throws InvalidParameterException, StorageException {
+        detalles = new ArrayList();
         // Check if there are any products to buy and store
         if (cart.getCantidad() <= 0)
             throw new InvalidParameterException("La cantidad de productos a comprar es nula.");
@@ -108,10 +114,36 @@ public class Detalles extends Details {
     /**
      * @return the detalles
      */
-    public List<Details> getDetalles() {
+    public List<Details> getAllDetails() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        detalles = new DetailsDaoImpl(session).fetchAll();
+        session.close();
         return detalles;
     }
 
+    public String getUserDetails(Users user){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        detalles = new ArrayList();
+        detalles = new DetailsDaoImpl(session).fetchAll();
+        productos = new ArrayList();
+        for(int i = 0; i < detalles.size(); i++){
+            if(detalles.get(i).getPurchases().getUsers().getIdUser() == user.getIdUser()){
+                Details d = detalles.get(i);
+                Products p = new Products(d.getProducts().getProduct(),d.getPrice(),d.getProducts().getStock());
+                p.setUnidades(d.getAmount());
+                productos.add(p);
+            }
+        }
+        
+        setTotal();
+        session.close();
+        return "history-detail";
+    }
+    
+    public List<Details> getDetalles(){
+        return detalles;
+    }
+    
     /**
      * @param detalles the detalles to set
      */
@@ -137,4 +169,50 @@ public class Detalles extends Details {
         this.setSuccess(false);
     }
     
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+    
+    public int getCantidad(){
+        return cantidad;
+    }
+    
+    public void setTotal() {
+        int aux = 0;
+        for(Products p : productos)
+            aux += p.getUnidades()* p.getPrice();
+        this.total = aux;
+    }
+    
+    public int getTotal(){
+        return total;
+    }
+
+    /**
+     * @return the productos
+     */
+    public List<Products> getProductos() {
+        return productos;
+    }
+
+    /**
+     * @param productos the productos to set
+     */
+    public void setProductos(List<Products> productos) {
+        this.productos = productos;
+    }
+
+    /**
+     * @return the sinCompras
+     */
+    public boolean isSinCompras() {
+        return productos.size() > 0;
+    }
+
+    /**
+     * @param sinCompras the sinCompras to set
+     */
+    public void setSinCompras(boolean sinCompras) {
+        this.sinCompras = sinCompras;
+    }
 }

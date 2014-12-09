@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE LUEGO DE LA BARRA DE NAVEGACION DE SERLO NECESIARIO -->
+    </ui:define>
+
+    <ui:define name="left">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE SOBRE EL SECTOR IZQUIERDO DE SERLO NECESIARIO -->       
+    </ui:define>
+
+    <ui:define name="content">
+
+        <main role="main" class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- BEGINS BREADCRUMBS -->
+                <ol class="breadcrumb">
+                    <li><h:link outcome="inicio">Inicio</h:link></li>
+                    <li class="active">Historial</li>
+                </ol>
+                <!-- ENDS BREADCRUMBS -->
+                <!-- BEGINS CONTENT -->
+                <h:panelGroup>
+                    <h1 class="header">Historial de compras</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre de usuario</th>
+                                <th>Historial</th>
+                            </tr>
+                        </thead>
+                        <ui:repeat value="#{agregarUsuario.listaUsuarios}" var="fila">
+                            <tr>
+                                <td><h:outputText value="#{fila.username}"/></td>
+                                
+                                <td><h:commandLink action="#{detalles.getUserDetails(fila)}" value="VER DETALLES" class="btn btn-success btn-xs"></h:commandLink></td>
+                            </tr>        
+                        </ui:repeat>     
+                    </table>
+                </h:panelGroup>
+                <!-- ENDS CONTENT -->
+            </div>
+        </main>
+        
+    </ui:define>
+
+</ui:composition>

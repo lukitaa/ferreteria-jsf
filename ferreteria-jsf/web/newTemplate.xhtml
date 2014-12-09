@@ -51,6 +51,8 @@
                             <!-- ESTA PARTE DEBE SER VISTA SOLAMENTE POR LOS ADMINS -->
                             <li><h:commandLink action="usuarios" rendered="#{userLogged.admin}">Usuarios</h:commandLink></li>
 
+                            <!-- SI ES ADMIN ACCEDE AL HISOTIRAL DE TODOS SINO AL DEL PROPIO USUARIO-->
+                            <li><h:commandLink action="historial" rendered="#{userLogged.admin}">Historial</h:commandLink></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 
