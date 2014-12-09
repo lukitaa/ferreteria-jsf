@@ -54,7 +54,7 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 
-                            <li><h:link>Carrito <span class="badge">0</span></h:link></li>
+                            <li><h:link outcome="detalles">Carrito <span class="badge">#{carrito.cantidad}</span></h:link></li>
 
                             <li><a>Hola, #{userLogged.username}!</a></li>
                             <!-- CAMBIAR ESTE VALUE CON ALGUNA PROPIEDAD DEL BEAN PARA REDIRECCIONAR LUEGO DE CANCELAR LA SESSION -->

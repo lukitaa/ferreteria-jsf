@@ -56,6 +56,11 @@ public class Productos {
         return goURL;
     }
     
+    public String agregarProductoAlCarrito(Products prod){
+        
+        return null;
+    }
+    
     public String eliminarProducto(Products prod) throws StorageException{
         String goURL = null;
         ProductsController.deleteProduct(prod);

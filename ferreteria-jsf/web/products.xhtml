@@ -27,7 +27,7 @@
                 <!-- BEGINS CONTENT -->
                 <div class="jumbotron presentation products">
                     <h:panelGroup rendered="#{userLogged.admin}">
-                        <h1>Agregar producto</h1>
+                        <h1 class="header">Agregar producto</h1>
                         <h:form class="form-inline">
                             <h:panelGroup class="form-group">
                                 <label>Nombre</label>
@@ -52,10 +52,10 @@
                                 </h:inputText>
                                 <h:message for="producto-precio"/>
                             </h:panelGroup>
-                            <br></br><h:commandButton type="submit" class="btn btn-default btn-sm" value="Agregar producto" action="#{products.agregarProducto(products.product,products.price,products.stock)}"/>
+                            <br></br><h:commandButton type="submit" class="btn btn-sm btn-primary" value="Agregar producto" action="#{products.agregarProducto(products.product,products.price,products.stock)}"/>
                         </h:form>
                     </h:panelGroup>                    
-                    <h2 class="header">Productos actuales </h2>
+                    <h2 class="header">Lista productos actuales </h2>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -89,13 +89,13 @@
                                     <h:outputText value="---" rendered="#{products.editmode}"/>
                                 </td>
                                 
-                                <th><h:commandButton action="submit" value="Agregar carrito" class="btn btn-warning btn-xs"></h:commandButton></th>
+                                <th><h:commandButton action="#{carrito.updateCart(fila)}" value="Agregar carrito" class="btn btn-warning btn-xs"></h:commandButton></th>
                                 <th><h:commandButton action="#{products.eliminarProducto(fila)}" value="Eliminar" class="btn btn-danger btn-xs" rendered="#{userLogged.admin}"/></th>
                                 <th><h:commandButton action="#{products.editarProducto(fila)}" value="Editar" class="btn btn-info btn-xs" rendered="#{userLogged.admin and products.editmode}"/></th>
                             </tr>        
                         </ui:repeat>        
                     </table>    
-                    <a href="carrito" class="btn btn-primary">Ver el pedido</a>
+                    <h:link outcome="detalles" class="btn btn-primary">Ver el pedido</h:link>
                     <h:commandButton value="Habilitar las celdas para editar" action="#{products.edit}" rendered="#{!products.editmode and userLogged.admin}" class="btn btn-primary btn-right"/>
                     <h:commandButton value="Deshabilitar las celdas para editar" action="#{products.desedit}" rendered="#{products.editmode and userLogged.admin}" class="btn btn-primary btn-right"/>
                     

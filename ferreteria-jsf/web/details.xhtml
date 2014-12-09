@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE LUEGO DE LA BARRA DE NAVEGACION DE SERLO NECESIARIO -->
+    </ui:define>
+
+    <ui:define name="left">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE SOBRE EL SECTOR IZQUIERDO DE SERLO NECESIARIO -->       
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <main role="main" class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- BEGINS BREADCRUMBS -->
+                <ol class="breadcrumb">
+                    <li><h:link outcome="inicio">Inicio</h:link></li>
+                    <li><h:link outcome="productos">Productos</h:link></li>
+                    <li class="active">Ver Carrito</li>
+                </ol>
+                <!-- ENDS BREADCRUMBS -->
+                <!-- BEGINS CONTENT -->
+                <div class="jumbotron presentation products">
+                    <h1 class="header">Ver carrito</h1>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Unidades</th>
+                                <th>Stock</th>
+                                <th>Quitar</th>
+                            </tr>
+                        </thead>
+                        <ui:repeat value="#{carrito.getProductosComprar()}" var="fila">
+                            <tr>
+                                <td><h:outputText value="#{fila.product}"/></td>
+                                <td><h:outputText value="#{fila.price}"/></td>
+                                <td><h:outputText value="#{fila.unidades}"/></td>
+                                <td><h:outputText value="#{fila.stock}"/></td>
+                                
+                                #{carrito.updateTotal( (fila.unidades * fila.price) )}
+                                
+                                <th><h:commandButton action="#{carrito.removeProduct(fila)}" value="Quitar" class="btn btn-danger btn-xs"/></th>
+                            </tr>        
+                        </ui:repeat> 
+                    </table>
+                    
+                    <h:outputText value="Total de compra: $#{carrito.total}" class="text-success"/>
+                    <!-- <a href="carrito/comprar" class="btn btn-info" <%= itemIsOverProductStock?"disabled":""%>>Realizar Pedido</a> -->
+                    <h4 class="text-muted">Advertencia: no se podra realizar la compra si la cantidad de unidades de un art&iacute;culo supera el stock disponible.</h4>
+                            
+                </div>
+                <!-- ENDS CONTENT -->
+            </div>
+        </main>
+        
+    </ui:define>
+
+    
+</ui:composition>

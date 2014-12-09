@@ -7,24 +7,29 @@
     
     <!-- SECTOR DE BEANS -->
     <managed-bean>
-        <managed-bean-name>  userLogged     </managed-bean-name>
-        <managed-bean-class>beans.Usuario   </managed-bean-class>
-        <managed-bean-scope> session        </managed-bean-scope>
+        <managed-bean-name>  userLogged             </managed-bean-name>
+        <managed-bean-class>beans.Usuario           </managed-bean-class>
+        <managed-bean-scope> session                </managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>  agregarUsuario     </managed-bean-name>
-        <managed-bean-class>beans.PaginaUsuarios   </managed-bean-class>
-        <managed-bean-scope> session        </managed-bean-scope>
+        <managed-bean-name>  agregarUsuario         </managed-bean-name>
+        <managed-bean-class>beans.PaginaUsuarios    </managed-bean-class>
+        <managed-bean-scope> session                </managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>  shoppingCart   </managed-bean-name>
-        <managed-bean-class>entity.ShoppingCart</managed-bean-class>
-        <managed-bean-scope> session        </managed-bean-scope>
+        <managed-bean-name>  shoppingCart           </managed-bean-name>
+        <managed-bean-class>entity.ShoppingCart     </managed-bean-class>
+        <managed-bean-scope> session                </managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>products</managed-bean-name>
-        <managed-bean-class>beans.Productos</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-name>products                 </managed-bean-name>
+        <managed-bean-class>beans.Productos         </managed-bean-class>
+        <managed-bean-scope>session                 </managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>carrito                  </managed-bean-name>
+        <managed-bean-class>beans.CarritoCompra     </managed-bean-class>
+        <managed-bean-scope>session                 </managed-bean-scope>
     </managed-bean>
     <!-- SECTOR DE NAVEGACION -->
     <navigation-rule>
@@ -49,6 +54,10 @@
         <navigation-case>
             <from-outcome>productos</from-outcome>
             <to-view-id>products.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>detalles</from-outcome>
+            <to-view-id>details.xhtml</to-view-id>
         </navigation-case>
         
     </navigation-rule>    
