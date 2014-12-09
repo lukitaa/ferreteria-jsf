@@ -31,6 +31,11 @@
         <managed-bean-class>beans.CarritoCompra     </managed-bean-class>
         <managed-bean-scope>session                 </managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>detalles                  </managed-bean-name>
+        <managed-bean-class>beans.Detalles     </managed-bean-class>
+        <managed-bean-scope>session                 </managed-bean-scope>
+    </managed-bean>
     <!-- SECTOR DE NAVEGACION -->
     <navigation-rule>
         <!-- se consideran todas las peticiones -->

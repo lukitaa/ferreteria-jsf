@@ -51,9 +51,15 @@
                     </table>
                     
                     <h:outputText value="Total de compra: $#{carrito.total}" class="text-success"/><br/>
-                    <h:commandButton action="submit" class="btn btn-primary btn-sm" rendered="#{carrito.cantidad > 0 and !carrito.error}" value="Realizar Pedido"></h:commandButton>
+                    <h:commandButton action="#{detalles.purchaseProducts(carrito, userLogged.userID)}" class="btn btn-primary btn-sm" rendered="#{carrito.cantidad > 0 and !carrito.error}" value="Realizar Pedido"></h:commandButton>
                     <h4 class="text-danger">Advertencia: no se podra realizar la compra si la cantidad de unidades de un art&iacute;culo supera el stock disponible.</h4>
                             
+                    <h:outputScript rendered="#{detalles.success}">
+                        alert('Compra realizada con exito! \n Actualize y/o cambie de pagina para actualizar el carrito');
+                        #{detalles.desSuccess()}
+                        #{carrito.resetearCompras()}
+                    </h:outputScript>
+                    
                 </div>
                 <!-- ENDS CONTENT -->
             </div>

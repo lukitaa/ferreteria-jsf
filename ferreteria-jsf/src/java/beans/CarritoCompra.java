@@ -166,6 +166,13 @@ public class CarritoCompra {
         return productosComprar;
     }
 
+    public String resetearCompras(){
+        setProductosComprar(new ArrayList());
+        setProductsId(new ArrayList());
+        setProductsAmount(new ArrayList());
+        return "detalles";
+    }
+    
     /**
      * @param productosComprar the productosComprar to set
      */

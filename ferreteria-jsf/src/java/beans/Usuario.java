@@ -23,11 +23,12 @@ public class Usuario extends Users {
     private boolean logeado;
     private boolean admin;
     private boolean loginError = false;
-    
+    private int userID;
     
     public Usuario(){
         logeado = false;
         loginError = false;
+        userID = -1;
     }
     
 
@@ -68,6 +69,7 @@ public class Usuario extends Users {
             if(!loginError){
                 this.setAdmin(u.isAdmin());
                 logeado = true;
+                userID = u.getIdUser();
                 isLogged = "logueado";
             }
 
@@ -121,6 +123,20 @@ public class Usuario extends Users {
      */
     public void setLoginError(boolean loginError) {
         this.loginError = loginError;
+    }
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     
     
