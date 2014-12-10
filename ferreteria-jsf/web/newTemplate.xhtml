@@ -20,6 +20,11 @@
         
         <div id="top" class="top">
             
+        <!-- DESCOMENTAR ESTA PARTE EN CASO DE QUE SEA LA PRIMERA VEZ QUE SE USA EL SISTEMA
+         #{agregarUsuario.addUser("admin","admin",true)}  
+        -->
+        
+        
         <!-- COMPROBAR SI EL USUARIO ESTA LOGEADO, CASO CONTRARIO ENVIARLO AL LOGIN! -->
         <h:form rendered="#{!userLogged.logeado}">
             <h1 align="center"> Debe loguearse para poder ver esta pagina... </h1>  
@@ -53,6 +58,9 @@
 
                             <!-- SI ES ADMIN ACCEDE AL HISOTIRAL DE TODOS SINO AL DEL PROPIO USUARIO-->
                             <li><h:commandLink action="historial" rendered="#{userLogged.admin}">Historial</h:commandLink></li>
+                            <li><h:commandLink action="#{detalles.getUserDetails(userLogged.userID)}" rendered="#{!userLogged.admin}">Historial</h:commandLink></li>
+                            
+                            <li><h:commandLink action="ordenes" rendered="#{userLogged.admin}">Ordenes</h:commandLink></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 

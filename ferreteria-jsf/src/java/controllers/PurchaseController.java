@@ -192,7 +192,7 @@ public class PurchaseController extends IntermediateController {
      */
     public static List<Purchases> getNotPendingOrders(Session session) throws StorageException {
         List<Purchases> orders = null;
-
+        
         try {
             orders = new PurchasesDaoImpl(session).getNotPending();
 

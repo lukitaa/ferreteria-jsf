@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns="http://www.w3.org/1999/xhtml"
+                template="./newTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE LUEGO DE LA BARRA DE NAVEGACION DE SERLO NECESIARIO -->
+    </ui:define>
+
+    <ui:define name="left">
+        <!-- ACA IRIA EL CONTENIDO A MOSTRARSE SOBRE EL SECTOR IZQUIERDO DE SERLO NECESIARIO -->       
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <main role="main" class="container">
+            <div class="col-md-10 col-md-offset-1">
+                <!-- BEGINS BREADCRUMBS -->
+                <ol class="breadcrumb">
+                    <li><h:link outcome="inicio">Inicio</h:link></li>
+                    <li><h:link outcome="ordenes">Ordenes</h:link></li>
+                    <li class="active">Ordenes Pendientes</li>
+                </ol>
+                <!-- ENDS BREADCRUMBS -->
+                <!-- BEGINS CONTENT -->
+                <div class="jumbotron presentation products">
+                    <h1 class="header">Ordenes pendientes</h1>
+                    <p>A continuaci&oacute;n podra generar ordenes de piqueo para ordenes pendientes.</p>
+                    
+                    <h:panelGroup rendered="#{ordenes.cantidad != 0}">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID pedido</th>
+                                    <th>Generar orden</th>
+                                </tr>
+                            </thead>
+                            <ui:repeat value="#{ordenes.getListaCompras()}" var="fila">
+                                <tr>    
+                                    <td><h:outputText title="Ver compra" value="#{fila.idPurchase}" rendered="#{!fila.done}"></h:outputText></td>
+                                    <td><h:commandButton action="#{ordenes.setDonePurchase(fila.idPurchase)}" title="Generar orden de piqueo para el pedido" class="btn btn-xs btn-info" value="Generar" rendered="#{!fila.done}"></h:commandButton></td>
+                                </tr>
+                            </ui:repeat>
+                        </table>
+                    </h:panelGroup>
+                    
+                    <h:outputText class="text-success header" style="font-size: x-large" rendered="#{ordenes.cantidad == 0}" value="No se encontraron ordenes pendientes."></h:outputText>
+                    
+                    <h:outputScript rendered="#{ordenes.success}">
+                        alert('Orden generada con exito! \n Actualize y/o cambie de pagina para ver los efectos.');
+                        #{ordenes.desSuccess()}
+                    </h:outputScript>
+                    
+                </div>
+                <!-- ENDS CONTENT -->
+            </div>
+        </main>
+        
+    </ui:define>
+
+    
+</ui:composition>

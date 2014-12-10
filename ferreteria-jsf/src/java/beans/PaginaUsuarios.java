@@ -138,6 +138,12 @@ public class PaginaUsuarios {
         return null;
     }
     
+    public Users addUser(String user, String pass, boolean isAdmin) throws InvalidParameterException, StorageException, controllers.StorageException, controllers.InvalidParameterException {
+        UsersController.addUser(user, pass, isAdmin);
+        setSuccess(true);
+        return null;
+    }
+    
     /**
      * @param listaUsuarios the listaUsuarios to set
      */

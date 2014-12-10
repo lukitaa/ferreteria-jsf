@@ -15,46 +15,46 @@
     </ui:define>
 
     <ui:define name="content">
-
+        
         <main role="main" class="container">
             <div class="col-md-10 col-md-offset-1">
                 <!-- BEGINS BREADCRUMBS -->
                 <ol class="breadcrumb">
                     <li><h:link outcome="inicio">Inicio</h:link></li>
-                    <li><h:link outcome="historial">Historial</h:link></li>
-                    <li class="active">Detalle historial</li>
+                    <li><h:link outcome="ordenes">Ordenes</h:link></li>
+                    <li class="active">Ordenes de piqueo</li>
                 </ol>
                 <!-- ENDS BREADCRUMBS -->
                 <!-- BEGINS CONTENT -->
-                <h:panelGroup rendered="#{detalles.sinCompras}">
-                    <h1 class="header">Pedidos realizados</h1>
-                    
-                    <!-- #{detalles.getUserDetails(userLogged.userID)} -->
-                     
+                <div class="jumbotron presentation products">
+                    <h1 class="header">Productos que necesitan piqueo</h1>
+                    <h:panelGroup rendered="#{ordenes.cantidad != 0}">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Producto</th>
-                                    <th>Precio Historico</th>
-                                    <th>Unidades</th>
+                                    <th>Cantidad</th>
+                                    <th>Stock total</th>
                                 </tr>
                             </thead>
-                            <ui:repeat value="#{detalles.productos}" var="fila">
-                                <tr>
-                                    <td><h:outputText value="#{fila.product}"/></td>
-                                    <td><h:outputText value="#{fila.price}"/></td>
-                                    <td><h:outputText value="#{fila.unidades}"/></td>
-                                </tr>        
+                            <ui:repeat value="#{ordenes.getListaDetalles()}" var="fila">
+                                <tr>    
+                                    <td><h:outputText value="#{fila.product}"></h:outputText></td>
+                                    <td><h:outputText value="#{fila.unidades}"></h:outputText></td>
+                                    <td><h:outputText value="#{fila.stock}"></h:outputText></td>
+                                </tr>
                             </ui:repeat>
                         </table>
+                    </h:panelGroup>
                     
-                    <h:outputText class="lead" value="Total de compras: $#{detalles.total}"></h:outputText>
-                </h:panelGroup>
-                <h:outputText class="text-success header" style="font-size: x-large" rendered="#{!detalles.sinCompras}" value="No se han encontrado pedidos realizados por el usuario."></h:outputText>
+                    <h:outputText class="text-success header" style="font-size: x-large" rendered="#{ordenes.cantidad == 0}" value="No se encontraron ordenes de piqueo."></h:outputText>
+                    
+                </div>
                 <!-- ENDS CONTENT -->
             </div>
         </main>
         
     </ui:define>
 
+    
 </ui:composition>

@@ -23,11 +23,15 @@
                     <p>Desde aqu&iacute; puedes acceder a las siguientes opciones: </p>
                     <div class="container menu">
                         <div class="row">
+                            <!-- PRODUCTOS -->
                             <h:commandLink action="productos" class="col-md-3 btn-block btn btn-lg">productos</h:commandLink>
-                            
+                            <!-- USUARIOS -->
                             <h:commandLink action="usuarios" class="col-md-3 btn-block btn btn-lg" rendered="#{userLogged.admin}">usuarios</h:commandLink>
+                            <!-- HISTORIAL -->
                             <h:commandLink action="historial" class="col-md-3 btn-block btn btn-lg" rendered="#{userLogged.admin}">Historial</h:commandLink>
-                            
+                            <h:commandLink action="#{detalles.getUserDetails(userLogged.userID)}" class="col-md-3 btn-block btn btn-lg" rendered="#{!userLogged.admin}">Historial</h:commandLink>
+                            <!-- ORDENES -->
+                            <h:commandLink action="ordenes" class="col-md-3 btn-block btn btn-lg" rendered="#{userLogged.admin}">Ordenes</h:commandLink>
                         </div>
                     </div>
                 </div>

@@ -15,38 +15,29 @@
     </ui:define>
 
     <ui:define name="content">
-
+        
         <main role="main" class="container">
             <div class="col-md-10 col-md-offset-1">
                 <!-- BEGINS BREADCRUMBS -->
                 <ol class="breadcrumb">
                     <li><h:link outcome="inicio">Inicio</h:link></li>
-                    <li class="active">Historial</li>
+                    <li class="active">Ordenes</li>
                 </ol>
                 <!-- ENDS BREADCRUMBS -->
                 <!-- BEGINS CONTENT -->
-                <h:panelGroup>
-                    <h1 class="header">Historial de compras</h1>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Nombre de usuario</th>
-                                <th>Historial</th>
-                            </tr>
-                        </thead>
-                        <ui:repeat value="#{agregarUsuario.listaUsuarios}" var="fila">
-                            <tr>
-                                <td><h:outputText value="#{fila.username}"/></td>
-                                
-                                <td><h:commandLink action="#{detalles.getUserDetails(fila.idUser)}" value="VER DETALLES" class="btn btn-success btn-xs"></h:commandLink></td>
-                            </tr>        
-                        </ui:repeat>     
-                    </table>
-                </h:panelGroup>
+                <div class="jumbotron presentation products">
+                    <h1 class="header">Ordenes</h1>
+                    <p>Accede a los siguientes tipos de ordenes para administrar las mismas: </p>
+                    <ul>
+                        <li><h:link outcome="#{ordenes.getPendingOrders()}">Ordenes Pendientes</h:link></li>
+                        <li><h:link outcome="#{ordenes.getNotPendingOrders()}">Ordenes de Piqueo</h:link></li>
+                    </ul>
+                </div>
                 <!-- ENDS CONTENT -->
             </div>
         </main>
         
     </ui:define>
 
+    
 </ui:composition>

@@ -18,6 +18,16 @@ public class Products  implements java.io.Serializable {
      private int stock;
      private Set detailses = new HashSet(0);
 
+     
+     private int idCompra;
+     public int getIdCompra() {
+        return this.idCompra;
+    }
+    public void setIdCompra(int idCompra) {
+        this.idCompra = idCompra;
+    }
+     
+     
     public Products() {
     }
 

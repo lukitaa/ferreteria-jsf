@@ -33,10 +33,12 @@ public class Detalles extends Details {
     private boolean success = false;
     private boolean sinCompras;
     private List<Products> productos;
+    private List<Details> detallesUsuario;
     
     public Detalles(){
         detalles = new ArrayList();
         productos = new ArrayList();
+        detallesUsuario = new ArrayList();
         success = false;
     }
     
@@ -121,17 +123,19 @@ public class Detalles extends Details {
         return detalles;
     }
 
-    public String getUserDetails(Users user){
+    public String getUserDetails(int userID){
         Session session = HibernateUtil.getSessionFactory().openSession();
         detalles = new ArrayList();
         detalles = new DetailsDaoImpl(session).fetchAll();
         productos = new ArrayList();
         for(int i = 0; i < detalles.size(); i++){
-            if(detalles.get(i).getPurchases().getUsers().getIdUser() == user.getIdUser()){
+            if(detalles.get(i).getPurchases().getUsers().getIdUser() == userID){
                 Details d = detalles.get(i);
                 Products p = new Products(d.getProducts().getProduct(),d.getPrice(),d.getProducts().getStock());
                 p.setUnidades(d.getAmount());
+                p.setIdCompra(d.getProducts().getIdCompra());
                 productos.add(p);
+                detallesUsuario.add(d);
             }
         }
         
@@ -214,5 +218,19 @@ public class Detalles extends Details {
      */
     public void setSinCompras(boolean sinCompras) {
         this.sinCompras = sinCompras;
+    }
+
+    /**
+     * @return the detallesUsuario
+     */
+    public List<Details> getDetallesUsuario() {
+        return detallesUsuario;
+    }
+
+    /**
+     * @param detallesUsuario the detallesUsuario to set
+     */
+    public void setDetallesUsuario(List<Details> detallesUsuario) {
+        this.detallesUsuario = detallesUsuario;
     }
 }

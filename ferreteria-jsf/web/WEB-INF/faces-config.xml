@@ -32,8 +32,13 @@
         <managed-bean-scope>session                 </managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>detalles                  </managed-bean-name>
-        <managed-bean-class>beans.Detalles     </managed-bean-class>
+        <managed-bean-name>detalles                 </managed-bean-name>
+        <managed-bean-class>beans.Detalles          </managed-bean-class>
+        <managed-bean-scope>session                 </managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ordenes                  </managed-bean-name>
+        <managed-bean-class>beans.Ordenes          </managed-bean-class>
         <managed-bean-scope>session                 </managed-bean-scope>
     </managed-bean>
     <!-- SECTOR DE NAVEGACION -->
@@ -72,6 +77,21 @@
             <from-outcome>historial-detalle</from-outcome>
             <to-view-id>history-detail.xhtml</to-view-id>
         </navigation-case>
-        
+        <navigation-case>
+            <from-outcome>ordenes</from-outcome>
+            <to-view-id>ordenes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ordenes-pendientes</from-outcome>
+            <to-view-id>ordenes-pendiente.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ordenes-piqueo</from-outcome>
+            <to-view-id>ordenes-piqueo.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mostrar-detalle</from-outcome>
+            <to-view-id>mostrar-detalle.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>    
 </faces-config>
