@@ -41,6 +41,11 @@
         <managed-bean-class>beans.Ordenes          </managed-bean-class>
         <managed-bean-scope>session                 </managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>detalleCompra                  </managed-bean-name>
+        <managed-bean-class>beans.DetalleCompra          </managed-bean-class>
+        <managed-bean-scope>session                 </managed-bean-scope>
+    </managed-bean>
     <!-- SECTOR DE NAVEGACION -->
     <navigation-rule>
         <!-- se consideran todas las peticiones -->
@@ -90,8 +95,8 @@
             <to-view-id>ordenes-piqueo.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
-            <from-outcome>mostrar-detalle</from-outcome>
-            <to-view-id>mostrar-detalle.xhtml</to-view-id>
+            <from-outcome>detalle-compra</from-outcome>
+            <to-view-id>detalle-compra.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>    
 </faces-config>

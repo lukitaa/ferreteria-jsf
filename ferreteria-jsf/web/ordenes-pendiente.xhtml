@@ -36,6 +36,7 @@
                                 <tr>
                                     <th>ID pedido</th>
                                     <th>Usuario</th>
+                                    <th>Ver detalle</th>
                                     <th>Generar orden</th>
                                 </tr>
                             </thead>
@@ -43,7 +44,8 @@
                                 <tr>    
                                     <td><h:outputText title="Ver compra" value="#{fila.idPurchase}" rendered="#{!fila.done}"></h:outputText></td>
                                     <td><h:outputText title="Usuario que realizo la compra" value="#{fila.users.username}" rendered="#{!fila.done}"></h:outputText></td>
-                                    <td><h:commandButton action="#{ordenes.setDonePurchase(fila.idPurchase)}" title="Generar orden de piqueo para el pedido" class="btn btn-xs btn-info" value="Generar" rendered="#{!fila.done}"></h:commandButton></td>
+                                    <td><h:commandButton action="#{detalleCompra.obtenerDetalleCompra(fila.idPurchase)}" title="Observar el detalle de la compra" class="btn btn-xs btn-success" value="Detalle" rendered="#{!fila.done}"></h:commandButton></td>
+                                    <td><h:commandButton action="#{ordenes.setDonePurchase(fila.idPurchase)}" title="Generar orden de piqueo para el pedido" class="btn btn-xs btn-primary" value="Generar" rendered="#{!fila.done}"></h:commandButton></td>
                                 </tr>
                             </ui:repeat>
                         </table>

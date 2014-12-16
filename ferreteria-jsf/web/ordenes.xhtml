@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?><!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns="http://www.w3.org/1999/xhtml"
                 template="./newTemplate.xhtml"
@@ -28,10 +27,14 @@
                 <div class="jumbotron presentation products">
                     <h1 class="header">Ordenes</h1>
                     <p>Accede a los siguientes tipos de ordenes para administrar las mismas: </p>
-                    <ul>
-                        <li><h:link outcome="#{ordenes.getPendingOrders()}">Ordenes Pendientes</h:link></li>
-                        <li><h:link outcome="#{ordenes.getNotPendingOrders()}">Ordenes de Piqueo</h:link></li>
-                    </ul>
+                    <div class="container menu">
+                        <div class="row">
+                            <ul>
+                                <li><h:commandButton class="btn-block btn btn-sm btn-success" action="#{ordenes.getPendingOrders()}" value="Ordenes Pendientes"></h:commandButton></li>
+                                <li><h:commandButton class="btn-block btn btn-sm btn-primary" action="#{ordenes.getNotPendingOrders()}" value="Ordenes de Piqueo"></h:commandButton></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <!-- ENDS CONTENT -->
             </div>

@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import servlets.ShoppingCart;
 import util.HibernateUtil;
 
 /**
@@ -36,127 +35,6 @@ import util.HibernateUtil;
  * @author Lucio Martinez <luciomartinez at openmailbox dot org>
  */
 public class PurchaseController extends IntermediateController {
-
-    /**
-     * Generate a new purchase and bind it with the details
-     *
-     * @param purchaseDetails The Details list with a null purchase
-     * @param userId The user that is buying
-     * @return The Details list already stored binded with a purchase
-     * @throws StorageException
-     * @throws InvalidParameterException
-     */
-    public static List<Details> purchaseProducts(List<Details> purchaseDetails, Integer userId) throws StorageException, InvalidParameterException {
-
-        // Check if there are any products to buy and store
-        if (purchaseDetails.size() <= 0)
-            throw new InvalidParameterException("La cantidad de productos a comprar es nula.");
-
-        Integer productAmount, productId;
-
-        // Get the user how made the purchase
-        Users user = UsersController.getUser(userId);
-        // Generate a new purchase
-        Purchases purchase = new Purchases(false, user);
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            session.beginTransaction();
-
-            // Store the purchase to have an ID ;)
-            new PurchasesDaoImpl(session).add(purchase);
-
-            Products product = null;
-
-            // Add each product into the purchase's details
-            for(Details d : purchaseDetails){
-                productId     = d.getProducts().getIdProduct();
-                productAmount = d.getAmount();
-
-                // Recover product data
-                product = new ProductsDaoImpl(session).get(productId);
-
-                // Check if amount to buy is available,
-                // otherwise cancel the procedure
-                if (productAmount <= 0 || productAmount > product.getStock())
-                    throw new HibernateException("Stock not available.");//TODO: throw an invalid parameter exception
-
-                // Bind the detail to the product
-                d.setPurchases(purchase);
-
-                // Update product stock
-                product.setStock(product.getStock() - productAmount);
-            }
-
-            // Now the details list is complete and gotta be stored
-            new DetailsDaoImpl(session).add(purchaseDetails);
-
-            session.getTransaction().commit();
-
-        } catch(HibernateException e) {
-            if (session != null) {
-                session.getTransaction().rollback();
-                session.close();
-            }
-
-            throw new StorageException("Error interno al intentar guardar la compra.");
-        }
-
-        return purchaseDetails;
-    }
-
-    /**
-     * Add every product on the cart with a null purchase
-     *
-     * @param cart The products to buy
-     * @return The Details list
-     * @throws InvalidParameterException
-     * @throws StorageException
-     */
-    public static List<Details> getDetailsFromCart(ShoppingCart cart)
-            throws InvalidParameterException, StorageException {
-
-        // Check if there are any products to buy and store
-        if (cart.getProductsId().size() <= 0)
-            throw new InvalidParameterException("La cantidad de productos a comprar es nula.");
-
-        List<Details> details = new ArrayList();
-        Integer productAmount, productId;
-
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try {
-            Products product = null;
-
-            // Add each product into the purchase's details
-            for(int i = 0, length = cart.getProductsId().size(); i < length; i++) {
-                productId     = cart.getProductsId().get(i);
-                productAmount = cart.getProductsAmount().get(i);
-
-                // Recover product data
-                product = new ProductsDaoImpl(session).get(productId);
-
-                /// Add an item to the cart when it is over stock
-                /// have to allow user to note it and correct it
-                // Check if amount to buy is available,
-                // otherwise cancel the procedure
-                //if (productAmount <= 0 || productAmount > product.getStock())
-                    //throw new InvalidParameterException("El stock para el producto no se encuentra disponible.", product);//TODO: throw an invalid parameter exception
-
-                // Add the detail to the list
-                // NOTE: it is not associated with a purchase
-                details.add(new Details(null, product, productAmount, product.getPrice()));
-            }
-
-        } catch(HibernateException e) {
-            if (session != null) {
-                session.close();
-            }
-
-            throw new StorageException("Error interno al intentar cargar productos.");
-        }
-
-        return details;
-    }
 
     /**
      * Get pending orders
